@@ -21,10 +21,10 @@ const DataFile = "sample.txt"
 Split load optimally across processor cores.*/
 func WordCount(text string) map[string]int {
 
-	text1 := strings.Replace(text, ".", "", -1)
-	text2 := strings.Replace(text1, ",", "", -1)
-	text3 := strings.ToLower(text2)
-	words := strings.Fields(text3)
+	replacer := strings.NewReplacer(",", "", ".", "")
+	text1 := replacer.Replace(text)
+	text2 := strings.ToLower(text1)
+	words := strings.Fields(text2)
 	numCPU := runtime.NumCPU()
 
 	var divided [][]string
